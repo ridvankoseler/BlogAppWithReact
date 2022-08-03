@@ -75,7 +75,6 @@ const BlogContextProvider = ({ children }) => {
         setBlog,
         initialValues,
         editBlog,
-        blog,
         increaseLike,
         color,
       }}

@@ -10,6 +10,7 @@ export const toastWarnNotify = (msg) => {
     progress: undefined,
   });
 };
+
 export const toastSuccessNotify = (msg) => {
   toast.success(msg, {
     autoClose: 3000,
@@ -20,6 +21,7 @@ export const toastSuccessNotify = (msg) => {
     progress: undefined,
   });
 };
+
 export const toastErrorNotify = (msg) => {
   toast.error(msg, {
     autoClose: 3000,
@@ -30,4 +32,3 @@ export const toastErrorNotify = (msg) => {
     progress: undefined,
   });
 };
-// import "react-toastify/dist/ReactToastify.css";

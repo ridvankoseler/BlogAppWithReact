@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import Modal from "./Modal";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import Logo from "../assets/blog.png";
+import Logo from "../assets/logo.png";
 const Navbar = () => {
   const { show, setShow, currentUser } = useContext(AuthContext);
   // console.log(currentUser);

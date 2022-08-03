@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { deleteBlog, } from "../helpers/firebase";
+import { deleteBlog } from "../helpers/firebase";
 import { BlogContext } from "../contexts/BlogContext";
 import { AiFillHeart } from "react-icons/ai";
 
 const SingleBlog = ({ item }) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  const { editBlog, blog, increaseLike, color } = useContext(BlogContext);
+  const { editBlog, increaseLike, color } = useContext(BlogContext);
   // console.log(currentUser.email);
   const { title, url, content, userName, id, date, like } = item;
   return (

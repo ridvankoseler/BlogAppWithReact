@@ -75,3 +75,7 @@ textarea{
 .title{
     word-wrap: break-word;
 }
+.table-div{
+    width: 90%;
+    max-width: 40rem;
+}

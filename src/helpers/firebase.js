@@ -21,6 +21,7 @@ import {
 } from "firebase/auth";
 import { toastErrorNotify, toastSuccessNotify } from "../helpers/toastify";
 import { useEffect, useState } from "react";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -54,11 +55,11 @@ export const createUser = async (email, password, navigate, displayName) => {
       displayName: displayName,
     });
 
-    toastSuccessNotify("Registered successfully");
+    // toastSuccessNotify("Registered successfully");
     // console.log(userCredential);
     navigate("/");
   } catch (error) {
-    toastErrorNotify(error.message);
+    // toastErrorNotify(error.message);
     // console.log(error);
   }
 };
