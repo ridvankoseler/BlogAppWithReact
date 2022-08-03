@@ -3,18 +3,75 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body{
+    background-image: url('https://picsum.photos/1600/900');
+    background-size: cover;
+    /* height: 100%; */
+    /* background-position: center; */
+    background-repeat: no-repeat;
+}
+.logo-div img{
+    width: 60px;
+    height: 60px;
+}
 .btnDiv{
     position: relative;
-
 }
-
+.btnDiv button{
+    width: 4.5rem;
+}
 .modalDiv{
     position: absolute;
     left: 50%;
-    top: 100%;
+    top: 90%;
     transform: translateX(-50%);
-    background-color:darkgreen;
-    box-shadow: 0 5px 3px grey ;
+    background-color: white;
+    box-shadow: 0 3px 3px grey;
 }
-    
+.register{
+    width: 100%;
+    max-width: 30rem;
+    box-shadow: 0 3px 5px grey;
+}
+.blog-img{
+    width: 90%;
+    max-width:12rem;
+}
+.newForm{
+    max-width: 30rem;
+    background-color: rgba(0,0,0,0.5);
+}
+textarea{
+    resize: none;
+    overflow: auto;
+}
+.single{
+    max-width: 350px;
+}
+.img-div{
+    width: 100%;
+    height: 160px;
+}
+.img-div img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.content{
+    text-align: justify;
+}
+.detailContainer{
+    width: 90%;
+    max-width: 40rem;
+   
+}
+.details-imgDiv{
+    width: 80%;
+}
+.details-imgDiv img{
+    width: 100%;
+    object-fit: contain;
+}
+.title{
+    word-wrap: break-word;
+}

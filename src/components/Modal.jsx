@@ -2,43 +2,46 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { logout } from "../helpers/firebase";
+
 const Modal = () => {
   const { currentUser } = useContext(AuthContext);
   return (
-    <div className='modalDiv border border-1 border-dark d-flex justify-content-center align-items-center p-2 rounded-4 '>
-      {!currentUser ? (
-        <ul className=' d-flex justify-content-center align-items-center flex-column list-unstyled p-2 m-0'>
-          <li>
+    <div className='modalDiv rounded-3 '>
+      {currentUser ? (
+        <ul className='m-0 d-flex justify-content-center align-items-center flex-column p-2 '>
+          <li className='list-unstyled'>
             <Link
               to='/profile'
-              className='fw-bold text-light text-decoration-none'
+              className='text-dark text-decoration-none fw-bold'
             >
               Profile
             </Link>{" "}
           </li>
-          <li>
+          <li className='list-unstyled'>
             <Link
-              to='/login'
-              className='fw-bold text-light text-decoration-none'
+              to='/newblog'
+              className='text-dark text-decoration-none fw-bold'
             >
               New
             </Link>{" "}
           </li>
-          <li>
+          <li className='list-unstyled'>
             <Link
               to='/login'
-              className='fw-bold text-light text-decoration-none'
+              className='text-dark text-decoration-none fw-bold'
+              onClick={() => logout()}
             >
               Logout
             </Link>{" "}
           </li>
         </ul>
       ) : (
-        <ul className=' d-flex justify-content-center align-items-center flex-column text-center p-0 m-0'>
+        <ul className='text-center p-2 m-0'>
           <li className='list-unstyled'>
             <Link
               to='/login'
-              className='fw-bold text-light text-decoration-none'
+              className='text-dark text-decoration-none fw-bold'
             >
               Login
             </Link>{" "}
@@ -46,7 +49,7 @@ const Modal = () => {
           <li className='list-unstyled'>
             <Link
               to='/register'
-              className='fw-bold text-light text-decoration-none'
+              className='text-dark text-decoration-none fw-bold'
             >
               Register
             </Link>{" "}
@@ -56,4 +59,5 @@ const Modal = () => {
     </div>
   );
 };
+
 export default Modal;
