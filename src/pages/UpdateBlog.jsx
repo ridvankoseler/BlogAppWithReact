@@ -47,7 +47,6 @@ const UpdateBlog = () => {
           type='text'
           className='p-2 rounded-3 border-0'
           name='url'
-          required
           placeholder='IMAGE URL'
           value={blog.url}
           onChange={handleChange}

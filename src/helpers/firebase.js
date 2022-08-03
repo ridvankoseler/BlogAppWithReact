@@ -21,7 +21,6 @@ import {
 } from "firebase/auth";
 import { toastErrorNotify, toastSuccessNotify } from "../helpers/toastify";
 import { useEffect, useState } from "react";
-
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -55,17 +54,17 @@ export const createUser = async (email, password, navigate, displayName) => {
       displayName: displayName,
     });
 
-    // toastSuccessNotify("Registered successfully");
+    toastSuccessNotify("Registered successfully");
     // console.log(userCredential);
     navigate("/");
   } catch (error) {
-    // toastErrorNotify(error.message);
+    toastErrorNotify(error.message);
     // console.log(error);
   }
 };
 /*---------------------sign in----------------------*/
 
-export const signIn = async (email, password, navigate) => {
+export const signIn = async (email, password, navigate, blog) => {
   try {
     let userCredential = await signInWithEmailAndPassword(
       auth,
@@ -92,9 +91,17 @@ export const userObserver = (setCurrentUser) => {
 };
 
 //to log out
-export const logout = () => {
+export const logout = (bloglist) => {
   signOut(auth);
   toastSuccessNotify("Logged out successfully");
+  bloglist.map((item) => updateColor(item));
+};
+
+const updateColor = (blog) => {
+  const db = getDatabase(app);
+  const updates = {};
+  updates["blogs/" + blog.id] = { ...blog, color: false };
+  return update(ref(db), updates);
 };
 
 export const signUpProvider = (navigate) => {
@@ -127,12 +134,12 @@ export const addBlog = (blog, currentUser) => {
     like: blog.like,
     date: blog.date,
     usersId: blog.usersId,
+    color: blog.color,
   });
 };
 
 //get data
 export const useGetData = () => {
-  const [isLoading, setIsLoading] = useState();
   const [blogList, setBlogList] = useState();
   useEffect(() => {
     const db = getDatabase(app);
@@ -143,10 +150,9 @@ export const useGetData = () => {
 
       for (let id in data) blogArray.push({ id, ...data[id] });
       setBlogList(blogArray);
-      setIsLoading(false);
     });
   }, []);
-  return { isLoading, blogList };
+  return { blogList };
 };
 
 //delete
@@ -165,23 +171,3 @@ export const updateBlog = (blog) => {
   toastSuccessNotify("Edited successfully");
   return update(ref(db), updates);
 };
-
-//like
-// export const increaseLike = (blog,currentUser) => {
-// if(currentUser){
-//   // if(!Object.values(blog.usersId).includes(blog.id)){
-//     // console.log(Object.values(blog.usersId));
-//     // console.log(currentUser);
-//     const db = getDatabase(app);
-//   const updates={}
-//   updates["blogs/"+blog.id]={
-//       ...blog,
-//       like: blog.like + 1}
-//   return update(ref(db),updates)
-//   }
-// // }
-// else{
-//   toastErrorNotify("Please login first")
-// }
-
-//   }

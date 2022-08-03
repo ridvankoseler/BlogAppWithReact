@@ -14,23 +14,25 @@ const Navbar = () => {
   }, [show]);
 
   return (
-    <nav className='navbar d-flex justify-content-between bg-primary px-3'>
+    <nav className='navbar d-flex justify-content-between bg-secondary px-4 '>
       <div className='logo-div'>
         <Link to='/' className='text-light'>
           {" "}
           <img src={Logo} alt='Logo' />
         </Link>
       </div>
-      <div className=' d-flex align-items-center justify-content-center gap-2'>
-        {currentUser && (
-          <h5 className='text-light d-flex align-items-center justify-content-center'>
-            {currentUser.displayName}
-          </h5>
-        )}
-        <div className='btnDiv me-2 text-center d-flex align-items-center justify-content-center'>
-          <button className='border-0 fs-3 bg-transparent pb-1'>
+      <div className='d-flex align-items-center justify-content-center'>
+        <div className='d-flex align-items-center justify-content-center'>
+          {currentUser && (
+            <h5 className='text-dark d-flex align-items-center m-0'>
+              {currentUser.displayName}
+            </h5>
+          )}
+        </div>
+        <div className='btnDiv d-flex align-items-center justify-content-center px-3'>
+          <button className='border-0 fs-1 bg-transparent d-flex align-items-center'>
             <FaUserCircle
-              className='text-danger bg-light rounded-circle '
+              className='text-primary bg-light rounded-circle '
               onClick={() => setShow(!show)}
             />
           </button>

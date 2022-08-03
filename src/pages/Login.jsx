@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signIn, signUpProvider } from "../helpers/firebase";
 
-
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();

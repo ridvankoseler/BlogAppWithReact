@@ -11,7 +11,6 @@ export const BlogContext = createContext();
 
 const BlogContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
-  const [color, setColor] = useState(false);
 
   const initialValues = {
     title: "",
@@ -21,6 +20,7 @@ const BlogContextProvider = ({ children }) => {
     like: 0,
     date: new Date().toLocaleDateString("tr-TR"),
     usersId: [""],
+    color: false,
   };
   const [blog, setBlog] = useState(initialValues);
 
@@ -35,9 +35,9 @@ const BlogContextProvider = ({ children }) => {
         updates["blogs/" + blog.id] = {
           ...blog,
           like: blog.like + 1,
+          color: true,
           usersId: [...blog.usersId, currentUser.email],
         };
-        setColor(true);
         return update(ref(db), updates);
       } else {
         // toastErrorNotify("You have already clicked")
@@ -45,10 +45,10 @@ const BlogContextProvider = ({ children }) => {
         updates["blogs/" + blog.id] = {
           ...blog,
           like: blog.like - 1,
+          color: false,
           // usersId:[...blog.usersId,blog.id]
           usersId: [blog.usersId.filter((item) => item !== currentUser.email)],
         };
-        setColor(false);
         return update(ref(db), updates);
       }
     } else {
@@ -70,27 +70,21 @@ const BlogContextProvider = ({ children }) => {
 
   return (
     <BlogContext.Provider
-      value={{
-        blog,
-        setBlog,
-        initialValues,
-        editBlog,
-        increaseLike,
-        color,
-      }}
+      value={{ blog, setBlog, initialValues, editBlog, blog, increaseLike }}
     >
       {children}
     </BlogContext.Provider>
   );
 };
 
-
-// REACT_APP_apiKey=AIzaSyB4g-MDpCH36XQD4JON0oNrJOOeqBj80ME
-// REACT_APP_authDomain=blogapp-e8c2d.firebaseapp.com
-// REACT_APP_databaseURL=https://blogapp-e8c2d-default-rtdb.firebaseio.com
-// REACT_APP_projectId=blogapp-e8c2d
-// REACT_APP_storageBucket=blogapp-e8c2d.appspot.com
-// REACT_APP_messagingSenderId=1091031352607
-// REACT_APP_appId=1:1091031352607:web:795de4f7c40fb790d8dc2a
-
 export default BlogContextProvider;
+
+
+  // apiKey: "AIzaSyB4g-MDpCH36XQD4JON0oNrJOOeqBj80ME",
+  // authDomain: "blogapp-e8c2d.firebaseapp.com",
+  // databaseURL: "https://blogapp-e8c2d-default-rtdb.firebaseio.com",
+  // projectId: "blogapp-e8c2d",
+  // storageBucket: "blogapp-e8c2d.appspot.com",
+  // messagingSenderId: "1091031352607",
+  // appId: "1:1091031352607:web:795de4f7c40fb790d8dc2a",
+  // measurementId: "G-C718811MGE"

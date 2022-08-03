@@ -2,12 +2,13 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import { logout } from "../helpers/firebase";
+import { logout, useGetData } from "../helpers/firebase";
 
 const Modal = () => {
   const { currentUser } = useContext(AuthContext);
+  const { blogList } = useGetData();
   return (
-    <div className='modalDiv rounded-3 '>
+    <div className='modalDiv rounded-3 mt-2'>
       {currentUser ? (
         <ul className='m-0 d-flex justify-content-center align-items-center flex-column p-2 '>
           <li className='list-unstyled'>
@@ -30,7 +31,7 @@ const Modal = () => {
             <Link
               to='/login'
               className='text-dark text-decoration-none fw-bold'
-              onClick={() => logout()}
+              onClick={() => logout(blogList)}
             >
               Logout
             </Link>{" "}
