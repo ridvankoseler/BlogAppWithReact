@@ -12,7 +12,7 @@ body{
 }
 .navbar{
     background-color: rgb(56, 175, 139) !important;
-    box-shadow: 0px 2px 10px black;
+    box-shadow: 0px 2px 10px rgb(37, 31, 31);
 }
 .logo-div img{
     width: 60px;
